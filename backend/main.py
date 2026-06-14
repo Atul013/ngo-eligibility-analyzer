@@ -6,6 +6,8 @@ from typing import Optional
 import pandas as pd
 from fastapi import FastAPI, Depends, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from scalar_fastapi import get_scalar_api_reference
 from sqlalchemy.orm import Session
 
 import models
@@ -51,6 +53,8 @@ app = FastAPI(
     description="AI-powered system to determine NGO beneficiary eligibility using ML.",
     version="1.0.0",
     lifespan=lifespan,
+    docs_url=None,
+    redoc_url=None,
 )
 
 app.add_middleware(
@@ -282,3 +286,11 @@ def health():
         "decision_tree": is_trained("decision_tree"),
         "random_forest": is_trained("random_forest"),
     }}
+
+
+@app.get("/docs", include_in_schema=False)
+def scalar_docs() -> HTMLResponse:
+    return get_scalar_api_reference(
+        openapi_url="/openapi.json",
+        title="NGO Eligibility Analyzer — API Docs",
+    )
