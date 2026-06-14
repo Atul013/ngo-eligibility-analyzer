@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.db
+.venv/
+venv/
+*.egg-info/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Data (generated)
+backend/data/*.csv
+backend/models/
+
+# Misc
+.DS_Store
+*.log
+.env
