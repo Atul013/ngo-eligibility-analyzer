@@ -7,12 +7,31 @@ import {
 import { Users, CheckCircle, XCircle, DollarSign, User, Home } from 'lucide-react'
 
 const TOOLTIP_STYLE = {
-  background: '#181818',
-  border: '1px solid rgba(255,255,255,0.07)',
+  background: '#111111',
+  border: '1px solid rgba(196,168,130,0.18)',
   borderRadius: 8,
   fontSize: 12,
   color: '#F5F0E8',
-  boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+  boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+  padding: '8px 12px',
+}
+
+function ChartTooltip({ active, payload, label }: {
+  active?: boolean
+  payload?: { name: string; value: number; color: string; fill: string }[]
+  label?: string
+}) {
+  if (!active || !payload?.length) return null
+  return (
+    <div style={TOOLTIP_STYLE}>
+      {label && <p style={{ margin: '0 0 6px', fontSize: 11, color: '#787068' }}>{label}</p>}
+      {payload.map((entry) => (
+        <p key={entry.name} style={{ margin: '2px 0', color: entry.fill || entry.color }}>
+          {entry.name} : <span style={{ color: '#F5F0E8' }}>{entry.value}</span>
+        </p>
+      ))}
+    </div>
+  )
 }
 const AXIS_TICK = { fill: '#5E5A55', fontSize: 11, fontFamily: 'Inter Variable, sans-serif' }
 
@@ -110,15 +129,15 @@ export default function Dashboard() {
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
               <Pie data={eligibilityData} dataKey="value" cx="50%" cy="50%"
-                innerRadius={46} outerRadius={68} paddingAngle={3}>
+                innerRadius={46} outerRadius={68} paddingAngle={3} strokeWidth={0}>
                 <Cell fill="#C4A882" />
-                <Cell fill="#3D3530" />
+                <Cell fill="#5E5A55" />
               </Pie>
-              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(v: number, n: string) => [`${v} applicants`, n]} />
+              <Tooltip content={<ChartTooltip />} />
             </PieChart>
           </ResponsiveContainer>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 4 }}>
-            {[['#C4A882','Eligible',analytics.eligible_count],['#3D3530','Not Eligible',analytics.not_eligible_count]].map(([c,n,v]) => (
+            {[['#C4A882','Eligible',analytics.eligible_count],['#5E5A55','Not Eligible',analytics.not_eligible_count]].map(([c,n,v]) => (
               <span key={String(n)} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#787068' }}>
                 <span style={{ width: 8, height: 8, borderRadius: 2, background: String(c), display: 'inline-block' }} />
                 {n} ({v})
@@ -134,7 +153,7 @@ export default function Dashboard() {
             <BarChart data={employmentData} layout="vertical" barSize={8}>
               <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
               <YAxis type="category" dataKey="name" tick={{ ...AXIS_TICK, fontSize: 10 }} width={84} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
               <Bar dataKey="value" fill="#C4A882" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -147,7 +166,7 @@ export default function Dashboard() {
             <BarChart data={educationData} layout="vertical" barSize={8}>
               <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
               <YAxis type="category" dataKey="name" tick={{ ...AXIS_TICK, fontSize: 10 }} width={107} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
               <Bar dataKey="value" fill="#787068" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -162,13 +181,13 @@ export default function Dashboard() {
             <BarChart data={incomeChartData} barSize={30}>
               <XAxis dataKey="range" tick={AXIS_TICK} axisLine={false} tickLine={false} />
               <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
               <Bar dataKey="Eligible"     stackId="a" fill="#C4A882" />
-              <Bar dataKey="Not Eligible" stackId="a" fill="#3D3530" radius={[4,4,0,0]} />
+              <Bar dataKey="Not Eligible" stackId="a" fill="#5E5A55" radius={[4,4,0,0]} />
             </BarChart>
           </ResponsiveContainer>
           <div style={{ display: 'flex', gap: 16, marginTop: 10 }}>
-            {[['#C4A882','Eligible'],['#3D3530','Not Eligible']].map(([c,n]) => (
+            {[['#C4A882','Eligible'],['#5E5A55','Not Eligible']].map(([c,n]) => (
               <span key={n} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, color:'#5E5A55' }}>
                 <span style={{ width:8, height:8, borderRadius:2, background:c, display:'inline-block' }} />
                 {n}

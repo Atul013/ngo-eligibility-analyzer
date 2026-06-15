@@ -4,14 +4,6 @@ import { trainModel, compareModels, TrainResult } from '../api/client'
 import { toast } from 'sonner'
 import { Brain, Trophy, BarChart2, CheckCircle2, Circle } from 'lucide-react'
 
-const TOOLTIP_STYLE = {
-  background: '#181818',
-  border: '1px solid rgba(255,255,255,0.07)',
-  borderRadius: 8,
-  fontSize: 12,
-  color: '#F5F0E8',
-}
-
 const card: React.CSSProperties = {
   background: '#181818',
   border: '1px solid rgba(255,255,255,0.06)',
