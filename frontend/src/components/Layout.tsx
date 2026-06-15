@@ -66,14 +66,15 @@ export default function Layout() {
 
         {/* Footer */}
         <div style={{ padding: '14px 14px 18px' }}>
-          <div style={{
-            background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.05)',
-            borderRadius: 7,
-            padding: '9px 12px',
-          }}>
-            <p style={{ margin: 0, fontSize: 11, color: '#5E5A55', lineHeight: 1.5 }}>
-              FastAPI · Scikit-Learn · React
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '0 2px' }}>
+            <span style={{
+              width: 6, height: 6, borderRadius: '50%',
+              background: '#C4A882',
+              boxShadow: '0 0 6px rgba(196,168,130,0.5)',
+              flexShrink: 0,
+            }} />
+            <p style={{ margin: 0, fontSize: 11, color: '#5E5A55' }}>
+              API running on <span style={{ color: '#787068' }}>:8000</span>
             </p>
           </div>
         </div>
