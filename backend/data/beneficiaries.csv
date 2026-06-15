@@ -1,0 +1,251 @@
+applicant_name,age,family_income,family_members,employment_status,education_level,disability_status,eligibility_status
+Birendra Kumar,54,251932,5,Self-employed,Secondary,No,Not Eligible
+Kiran Bhat,34,67194,5,Employed,Primary,No,Eligible
+Savitri Devi,17,89735,10,Employed,Primary,No,Eligible
+Budhan Munda,48,83707,5,Part-time,Secondary,No,Eligible
+Vijay Krishnan,57,48431,4,Unemployed,Secondary,No,Eligible
+Gopal Mahato,62,239346,5,Unemployed,Undergraduate,No,Eligible
+Sunil Mane,18,99092,2,Unemployed,Primary,No,Eligible
+Sarita Gurung,19,38792,3,Self-employed,Undergraduate,No,Eligible
+Aidalin Nongbri,43,244358,1,Part-time,Primary,No,Eligible
+Harish Trivedi,29,65920,5,Part-time,Primary,No,Eligible
+Nirmal Sahu,44,523165,6,Employed,Postgraduate,No,Not Eligible
+Manpreet Kaur,30,563160,7,Part-time,Primary,No,Eligible
+Akash More,60,202798,9,Employed,Primary,No,Eligible
+Lakshmi Reddy,60,348984,6,Unemployed,Undergraduate,No,Eligible
+Komal Soni,59,479262,6,Part-time,Primary,No,Eligible
+Karma Wangchuk,50,91858,4,Unemployed,Secondary,No,Eligible
+Sujatha Menon,56,142662,4,Employed,Undergraduate,No,Not Eligible
+Pema Lhamo,63,197373,5,Part-time,Undergraduate,No,Eligible
+Biju Thomas,42,233252,6,Part-time,Primary,Yes,Eligible
+Chandu Murmu,41,36910,6,Part-time,Secondary,Yes,Eligible
+Rohan Desai,41,170015,5,Unemployed,No Formal Education,Yes,Eligible
+Priya Sharma,19,48141,6,Part-time,Primary,No,Eligible
+Tapan Mondal,51,182623,3,Self-employed,Undergraduate,No,Not Eligible
+Fatima Begum,21,99163,2,Part-time,Secondary,Yes,Eligible
+Kavitha Nair,40,74262,5,Part-time,Secondary,No,Eligible
+Varsha Salvi,28,260546,4,Self-employed,Undergraduate,Yes,Eligible
+Srinivas Murthy,48,43545,3,Employed,Primary,No,Eligible
+Salim Khan,39,339353,3,Unemployed,Primary,No,Eligible
+Suresh Babu,17,119474,1,Unemployed,Undergraduate,No,Eligible
+Savitha Kamath,64,210084,6,Self-employed,Secondary,Yes,Eligible
+Gurpreet Singh,59,190467,3,Self-employed,Primary,No,Eligible
+Jagdish Prasad,53,226308,5,Employed,Postgraduate,No,Not Eligible
+Nagesh Shetty,63,52671,1,Part-time,Postgraduate,No,Eligible
+Aruna Devi,35,32811,5,Self-employed,Undergraduate,No,Eligible
+Usha Rani,34,514835,4,Part-time,Primary,No,Not Eligible
+Santosh Wagh,54,41111,2,Self-employed,No Formal Education,No,Eligible
+Deepa Nambiar,38,51918,3,Part-time,Postgraduate,No,Eligible
+Mohammed Ali,63,433121,9,Part-time,Undergraduate,Yes,Eligible
+Mary D'Souza,20,59855,6,Employed,Secondary,No,Eligible
+Pushpa Agarwal,18,574327,8,Part-time,No Formal Education,Yes,Eligible
+Bikul Das,51,433629,9,Part-time,Secondary,No,Eligible
+Prakash Rao,33,141357,4,Unemployed,Primary,Yes,Eligible
+Naresh Saxena,56,68467,6,Part-time,Postgraduate,No,Eligible
+Subal Ghosh,18,116416,4,Self-employed,Secondary,Yes,Eligible
+Imran Sheikh,37,36893,7,Part-time,Primary,No,Eligible
+Arun Patel,42,60746,6,Unemployed,Primary,No,Eligible
+Tenzin Dorje,34,86835,8,Unemployed,Postgraduate,No,Eligible
+Sudhir Hegde,44,156212,9,Self-employed,Secondary,No,Eligible
+Santosh Pandey,44,415294,7,Employed,Primary,No,Not Eligible
+Jaswant Dhami,36,36102,5,Unemployed,Primary,No,Eligible
+Pynhunlang Khongwir,46,53093,5,Self-employed,Undergraduate,No,Eligible
+John Pereira,38,65777,4,Employed,No Formal Education,No,Eligible
+Amit Singh,55,108069,4,Unemployed,Secondary,Yes,Eligible
+Lalpekhlua,65,59592,1,Unemployed,Secondary,No,Eligible
+Junmoni Devi,51,122368,6,Unemployed,Postgraduate,No,Eligible
+Mahesh Patil,27,117922,5,Unemployed,Secondary,No,Eligible
+Ratan Tudu,37,481372,7,Unemployed,Secondary,No,Eligible
+Zainab Khan,64,100313,2,Unemployed,Secondary,No,Eligible
+Nirmala Chhetri,48,110135,5,Part-time,Secondary,No,Eligible
+Dil Bahadur,19,283165,6,Self-employed,Postgraduate,No,Not Eligible
+Sumitra Kisku,28,203613,3,Self-employed,Primary,No,Not Eligible
+David Fernandez,43,332217,7,Employed,Undergraduate,No,Not Eligible
+Rajeev Pillai,24,104740,3,Self-employed,Primary,No,Eligible
+Phulmani Hembram,63,50056,9,Part-time,No Formal Education,No,Eligible
+Mohan Das,54,260734,4,Employed,Secondary,No,Not Eligible
+Swati Jadhav,27,97215,4,Unemployed,Undergraduate,No,Eligible
+Shalini Mehta,43,351293,6,Unemployed,Undergraduate,No,Eligible
+Bikash Rai,27,286319,3,Self-employed,Undergraduate,No,Not Eligible
+Meena Kumari,45,323049,7,Employed,Primary,No,Not Eligible
+Sarita Oraon,46,571967,5,Unemployed,Secondary,No,Eligible
+Peter Gomes,19,171991,1,Part-time,Postgraduate,Yes,Eligible
+Harbhajan Kaur,47,90890,5,Unemployed,No Formal Education,No,Eligible
+Deepak Joshi,48,221042,7,Employed,Undergraduate,No,Not Eligible
+Balwinder Dhaliwal,55,99449,2,Unemployed,Secondary,No,Eligible
+Lalremsiami,17,57350,6,Self-employed,Undergraduate,Yes,Eligible
+Ranjit Sarma,49,140358,4,Part-time,Undergraduate,No,Eligible
+Tariq Ahmed,26,360692,5,Part-time,Primary,No,Not Eligible
+Madhu Kapoor,52,286807,2,Self-employed,Primary,No,Not Eligible
+Rekha Tiwari,64,519798,7,Employed,Secondary,No,Not Eligible
+Arshad Hussain,64,191180,2,Self-employed,Secondary,No,Eligible
+Angela Rodrigues,32,44397,3,Part-time,Undergraduate,No,Eligible
+Malsawmi,34,495004,2,Self-employed,Primary,No,Not Eligible
+Abdul Raheem,22,171934,4,Unemployed,Postgraduate,No,Eligible
+Ravi Kumar,31,116900,5,Employed,Primary,Yes,Eligible
+Purnima Biswas,51,90566,4,Self-employed,Undergraduate,No,Eligible
+Zarzoliana,54,246174,5,Part-time,Undergraduate,No,Not Eligible
+Maya Tamang,26,223150,7,Unemployed,Undergraduate,No,Eligible
+Minati Roy,32,107052,3,Employed,Undergraduate,No,Not Eligible
+Sonam Tobgyal,24,139065,3,Self-employed,Secondary,No,Eligible
+Dipak Kalita,23,457504,3,Unemployed,Primary,No,Eligible
+Bindhu Krishnan,22,252396,4,Part-time,Secondary,No,Not Eligible
+Nazia Sultana,59,587433,2,Employed,Undergraduate,No,Not Eligible
+Shanti Devi,18,124748,2,Part-time,Primary,No,Eligible
+Saritha Pillai,43,264188,6,Self-employed,Undergraduate,No,Not Eligible
+Sneha Kulkarni,28,110219,7,Part-time,Primary,No,Eligible
+Zothansangi,53,156395,4,Unemployed,Secondary,No,Eligible
+Rekha Bhosale,31,141732,9,Unemployed,Secondary,No,Eligible
+Padmavathi,33,137640,4,Part-time,Secondary,No,Eligible
+Saji George,18,455576,9,Employed,Secondary,No,Not Eligible
+Lijo Joseph,31,245899,3,Unemployed,Undergraduate,No,Not Eligible
+Rani Borah,43,222023,2,Employed,Primary,No,Not Eligible
+Banshanlang Mawrie,56,34835,3,Employed,Secondary,No,Eligible
+Rajesh Yadav,35,65547,2,Employed,Secondary,No,Not Eligible
+Dawa Zangmo,21,176178,8,Part-time,Undergraduate,No,Eligible
+Poonam Shinde,25,114791,4,Employed,Postgraduate,No,Not Eligible
+Geeta Verma,16,232816,4,Employed,Secondary,No,Not Eligible
+Vimala Rao,37,192474,4,Part-time,Undergraduate,No,Eligible
+Chameli Devi,16,478998,7,Unemployed,Secondary,No,Eligible
+Vishnu Namboothiri,46,200642,6,Unemployed,Postgraduate,No,Eligible
+Anita Gupta,25,62201,3,Part-time,Undergraduate,Yes,Eligible
+Esther Dkhar,19,157744,4,Unemployed,No Formal Education,No,Eligible
+Pooja Mishra,23,44489,7,Unemployed,Primary,No,Eligible
+Asha Mathew,59,157626,4,Unemployed,Secondary,Yes,Eligible
+Champa Devi,38,121252,10,Part-time,Primary,No,Eligible
+Lalita Besra,65,85393,8,Employed,Undergraduate,No,Eligible
+Dhiraj Yadav,53,86800,5,Unemployed,Secondary,No,Eligible
+Sunita Devi,32,175479,3,Employed,Secondary,No,Not Eligible
+Ramesh Iyer,39,103477,5,Part-time,Undergraduate,No,Eligible
+Rukhsana Parveen,63,75002,3,Unemployed,Undergraduate,No,Eligible
+Birendra Kumar 2,31,472312,4,Part-time,No Formal Education,No,Eligible
+Kiran Bhat 2,44,105697,7,Unemployed,Undergraduate,Yes,Eligible
+Savitri Devi 2,33,66668,4,Part-time,Secondary,No,Eligible
+Budhan Munda 2,41,228464,1,Part-time,Primary,No,Eligible
+Vijay Krishnan 2,62,559127,8,Self-employed,Undergraduate,No,Not Eligible
+Gopal Mahato 2,32,94291,4,Part-time,Undergraduate,No,Eligible
+Sunil Mane 2,37,38717,4,Unemployed,Postgraduate,No,Eligible
+Sarita Gurung 2,60,266106,7,Self-employed,Secondary,No,Not Eligible
+Aidalin Nongbri 2,61,85658,5,Part-time,Secondary,No,Eligible
+Harish Trivedi 2,30,76271,4,Unemployed,Primary,No,Eligible
+Nirmal Sahu 2,54,566776,5,Part-time,Secondary,No,Not Eligible
+Manpreet Kaur 2,19,202152,5,Part-time,Secondary,No,Not Eligible
+Akash More 2,37,132910,4,Self-employed,Secondary,Yes,Eligible
+Lakshmi Reddy 2,52,168447,4,Part-time,Primary,No,Eligible
+Komal Soni 2,48,57285,3,Part-time,Secondary,No,Eligible
+Karma Wangchuk 2,26,458518,2,Part-time,Secondary,No,Not Eligible
+Sujatha Menon 2,46,34324,4,Self-employed,Secondary,No,Eligible
+Pema Lhamo 2,43,518958,3,Self-employed,Primary,No,Not Eligible
+Biju Thomas 2,53,173441,4,Part-time,Undergraduate,No,Eligible
+Chandu Murmu 2,60,36469,5,Employed,Primary,No,Eligible
+Rohan Desai 2,64,97584,5,Self-employed,Primary,Yes,Eligible
+Priya Sharma 2,51,140128,5,Unemployed,Postgraduate,No,Eligible
+Tapan Mondal 2,25,305287,3,Unemployed,No Formal Education,No,Not Eligible
+Fatima Begum 2,52,213070,6,Unemployed,Postgraduate,No,Eligible
+Kavitha Nair 2,46,113524,8,Unemployed,No Formal Education,No,Eligible
+Varsha Salvi 2,26,204555,5,Self-employed,Primary,No,Eligible
+Srinivas Murthy 2,44,38007,3,Unemployed,Primary,No,Eligible
+Salim Khan 2,36,270354,8,Part-time,Undergraduate,No,Not Eligible
+Suresh Babu 2,40,44060,4,Employed,Primary,No,Eligible
+Savitha Kamath 2,53,222974,4,Part-time,No Formal Education,No,Eligible
+Gurpreet Singh 2,62,269453,2,Self-employed,Undergraduate,No,Not Eligible
+Jagdish Prasad 2,21,144519,7,Unemployed,Secondary,No,Eligible
+Nagesh Shetty 2,51,130789,1,Self-employed,Secondary,Yes,Eligible
+Aruna Devi 2,37,152265,2,Unemployed,Undergraduate,Yes,Eligible
+Usha Rani 2,28,280558,5,Unemployed,Undergraduate,No,Eligible
+Santosh Wagh 2,30,50103,6,Unemployed,Primary,No,Eligible
+Deepa Nambiar 2,17,46478,3,Unemployed,Primary,Yes,Eligible
+Mohammed Ali 2,25,264071,8,Part-time,Undergraduate,No,Not Eligible
+Mary D'Souza 2,27,105993,3,Part-time,Secondary,No,Eligible
+Pushpa Agarwal 2,55,599363,6,Part-time,Secondary,No,Eligible
+Bikul Das 2,52,172329,5,Self-employed,Undergraduate,Yes,Eligible
+Prakash Rao 2,44,254869,2,Self-employed,Undergraduate,No,Not Eligible
+Naresh Saxena 2,36,424085,4,Self-employed,Undergraduate,No,Not Eligible
+Subal Ghosh 2,55,93374,4,Unemployed,Secondary,No,Eligible
+Imran Sheikh 2,41,480760,8,Employed,Secondary,No,Not Eligible
+Arun Patel 2,22,177761,1,Part-time,Secondary,No,Eligible
+Tenzin Dorje 2,39,582100,4,Unemployed,Secondary,No,Eligible
+Sudhir Hegde 2,58,34757,5,Part-time,Undergraduate,Yes,Eligible
+Santosh Pandey 2,32,76163,2,Unemployed,Primary,No,Eligible
+Jaswant Dhami 2,55,50806,4,Employed,No Formal Education,No,Eligible
+Pynhunlang Khongwir 2,34,253789,4,Unemployed,Secondary,No,Eligible
+John Pereira 2,31,269521,5,Part-time,No Formal Education,No,Eligible
+Amit Singh 2,43,146737,3,Unemployed,Undergraduate,No,Eligible
+Lalpekhlua 2,16,574486,4,Self-employed,Undergraduate,No,Not Eligible
+Junmoni Devi 2,25,483675,9,Unemployed,Secondary,No,Eligible
+Mahesh Patil 2,47,115382,3,Unemployed,Postgraduate,No,Eligible
+Ratan Tudu 2,23,282552,3,Employed,Primary,No,Not Eligible
+Zainab Khan 2,49,506111,7,Part-time,Secondary,No,Not Eligible
+Nirmala Chhetri 2,19,84771,4,Unemployed,Secondary,No,Eligible
+Dil Bahadur 2,33,124425,7,Unemployed,Undergraduate,No,Eligible
+Sumitra Kisku 2,63,292946,6,Self-employed,Primary,Yes,Eligible
+David Fernandez 2,16,53236,4,Employed,Secondary,No,Eligible
+Rajeev Pillai 2,38,106918,6,Part-time,Secondary,No,Eligible
+Phulmani Hembram 2,24,420674,6,Part-time,Postgraduate,No,Not Eligible
+Mohan Das 2,39,319063,4,Unemployed,Secondary,No,Not Eligible
+Swati Jadhav 2,47,279601,6,Unemployed,Secondary,No,Eligible
+Shalini Mehta 2,17,448757,10,Employed,Undergraduate,No,Not Eligible
+Bikash Rai 2,44,106908,5,Employed,Primary,No,Eligible
+Meena Kumari 2,40,108411,2,Unemployed,Undergraduate,Yes,Eligible
+Sarita Oraon 2,46,112565,5,Unemployed,Primary,No,Eligible
+Peter Gomes 2,22,89052,6,Unemployed,Undergraduate,No,Eligible
+Harbhajan Kaur 2,61,221371,2,Part-time,No Formal Education,No,Eligible
+Deepak Joshi 2,51,357492,4,Part-time,Postgraduate,No,Not Eligible
+Balwinder Dhaliwal 2,51,131046,4,Part-time,Secondary,No,Eligible
+Lalremsiami 2,62,124853,3,Self-employed,Primary,No,Eligible
+Ranjit Sarma 2,62,446922,9,Employed,Undergraduate,No,Not Eligible
+Tariq Ahmed 2,58,298376,4,Unemployed,Primary,Yes,Eligible
+Madhu Kapoor 2,55,174912,5,Unemployed,Secondary,No,Eligible
+Rekha Tiwari 2,40,43350,1,Part-time,Undergraduate,No,Eligible
+Arshad Hussain 2,45,50581,2,Self-employed,Secondary,No,Eligible
+Angela Rodrigues 2,64,272592,5,Part-time,Primary,No,Eligible
+Malsawmi 2,27,295695,5,Self-employed,Undergraduate,No,Not Eligible
+Abdul Raheem 2,32,405423,3,Part-time,No Formal Education,No,Not Eligible
+Ravi Kumar 2,40,210600,10,Unemployed,Postgraduate,No,Eligible
+Purnima Biswas 2,41,86276,6,Unemployed,Postgraduate,No,Eligible
+Zarzoliana 2,63,161786,6,Part-time,Secondary,No,Eligible
+Maya Tamang 2,54,157265,5,Unemployed,Undergraduate,No,Eligible
+Minati Roy 2,39,510017,5,Employed,Undergraduate,No,Not Eligible
+Sonam Tobgyal 2,41,143510,6,Self-employed,Undergraduate,No,Eligible
+Dipak Kalita 2,19,266389,5,Unemployed,Undergraduate,No,Not Eligible
+Bindhu Krishnan 2,60,109273,4,Unemployed,Undergraduate,No,Eligible
+Nazia Sultana 2,49,526577,6,Unemployed,No Formal Education,No,Eligible
+Shanti Devi 2,54,46371,4,Self-employed,No Formal Education,No,Eligible
+Saritha Pillai 2,31,115431,4,Employed,Secondary,No,Not Eligible
+Sneha Kulkarni 2,20,40816,4,Self-employed,Undergraduate,No,Eligible
+Zothansangi 2,45,64801,10,Unemployed,Primary,No,Eligible
+Rekha Bhosale 2,24,34494,8,Employed,Primary,No,Eligible
+Padmavathi 2,52,487710,4,Part-time,No Formal Education,No,Not Eligible
+Saji George 2,28,586406,3,Self-employed,Undergraduate,No,Not Eligible
+Lijo Joseph 2,35,111470,1,Part-time,No Formal Education,No,Eligible
+Rani Borah 2,18,373781,7,Unemployed,Secondary,No,Eligible
+Banshanlang Mawrie 2,50,92483,4,Part-time,Undergraduate,No,Eligible
+Rajesh Yadav 2,65,277757,5,Part-time,Undergraduate,No,Not Eligible
+Dawa Zangmo 2,62,334701,4,Self-employed,Undergraduate,No,Not Eligible
+Poonam Shinde 2,18,579746,7,Self-employed,Undergraduate,Yes,Not Eligible
+Geeta Verma 2,24,76542,4,Unemployed,Postgraduate,Yes,Eligible
+Vimala Rao 2,23,255044,9,Part-time,Secondary,No,Eligible
+Chameli Devi 2,63,386988,4,Self-employed,Secondary,No,Not Eligible
+Vishnu Namboothiri 2,47,32396,5,Employed,Undergraduate,No,Eligible
+Anita Gupta 2,42,116231,3,Employed,Primary,No,Not Eligible
+Esther Dkhar 2,63,225228,6,Part-time,Primary,No,Eligible
+Pooja Mishra 2,42,453606,9,Part-time,Postgraduate,No,Not Eligible
+Asha Mathew 2,46,77638,6,Unemployed,Postgraduate,No,Eligible
+Champa Devi 2,46,246209,1,Unemployed,Primary,No,Eligible
+Lalita Besra 2,47,195418,3,Unemployed,Secondary,No,Eligible
+Dhiraj Yadav 2,39,93852,1,Unemployed,Undergraduate,No,Eligible
+Sunita Devi 2,56,264353,8,Employed,Primary,No,Eligible
+Ramesh Iyer 2,44,264579,2,Part-time,Primary,No,Eligible
+Rukhsana Parveen 2,42,243797,2,Part-time,Undergraduate,Yes,Eligible
+Birendra Kumar 3,33,415374,6,Unemployed,Secondary,No,Eligible
+Kiran Bhat 3,50,51427,1,Unemployed,Primary,Yes,Eligible
+Savitri Devi 3,21,213106,4,Unemployed,No Formal Education,No,Eligible
+Budhan Munda 3,61,43025,7,Part-time,Secondary,No,Eligible
+Vijay Krishnan 3,30,71846,2,Self-employed,Postgraduate,No,Not Eligible
+Gopal Mahato 3,29,584186,9,Self-employed,No Formal Education,No,Eligible
+Sunil Mane 3,43,512943,9,Part-time,Primary,No,Eligible
+Sarita Gurung 3,34,93416,7,Employed,Secondary,Yes,Eligible
+Aidalin Nongbri 3,30,106961,5,Self-employed,Secondary,No,Eligible
+Harish Trivedi 3,27,289230,3,Part-time,Primary,No,Not Eligible
+Nirmal Sahu 3,40,287516,5,Self-employed,Primary,No,Eligible
+Manpreet Kaur 3,22,538260,9,Part-time,Undergraduate,No,Not Eligible

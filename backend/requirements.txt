@@ -6,3 +6,4 @@ pandas==2.2.3
 numpy==2.2.0
 scikit-learn==1.6.0
 python-multipart==0.0.20
+scalar-fastapi==1.0.7
