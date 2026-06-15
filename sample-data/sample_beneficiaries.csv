@@ -1,0 +1,11 @@
+applicant_name,age,family_income,family_members,employment_status,education_level,disability_status,eligibility_status
+Priya Sharma,24,85000,5,Unemployed,Secondary,No,Eligible
+Ravi Kumar,45,320000,3,Employed,Postgraduate,No,Not Eligible
+Anita Devi,32,60000,6,Part-time,Primary,Yes,Eligible
+Mohammed Rafiq,29,150000,4,Self-employed,Secondary,No,Not Eligible
+Sunita Bai,55,40000,7,Unemployed,No Formal Education,Yes,Eligible
+Arjun Nair,38,210000,2,Employed,Undergraduate,No,Not Eligible
+Kavitha Reddy,22,72000,5,Unemployed,Secondary,No,Eligible
+Deepak Yadav,41,95000,6,Part-time,Primary,Yes,Eligible
+Meena Pillai,35,280000,3,Self-employed,Postgraduate,No,Not Eligible
+Lakshmi Bose,28,55000,8,Unemployed,Primary,No,Eligible
