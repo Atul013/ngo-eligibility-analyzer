@@ -19,6 +19,7 @@ backend/models/
 .DS_Store
 *.log
 .env
+frontend/.env
 
 # Internal progress tracker
 PROGRESS.md

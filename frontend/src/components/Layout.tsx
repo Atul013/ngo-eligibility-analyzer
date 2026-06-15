@@ -66,17 +66,41 @@ export default function Layout() {
 
         {/* Footer */}
         <div style={{ padding: '14px 14px 18px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '0 2px' }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: '#C4A882',
-              boxShadow: '0 0 6px rgba(196,168,130,0.5)',
-              flexShrink: 0,
-            }} />
-            <p style={{ margin: 0, fontSize: 11, color: '#5E5A55' }}>
-              API running on <span style={{ color: '#787068' }}>:8000</span>
-            </p>
-          </div>
+          {(() => {
+            const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+            const port = new URL(base).port || '8000'
+            return (
+              <a
+                href={`${base}/docs`}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 7,
+                  padding: '8px 10px', borderRadius: 7,
+                  textDecoration: 'none',
+                  border: '1px solid transparent',
+                  transition: 'background 0.12s, border-color 0.12s',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'rgba(196,168,130,0.05)'
+                  e.currentTarget.style.borderColor = 'rgba(196,168,130,0.12)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'transparent'
+                  e.currentTarget.style.borderColor = 'transparent'
+                }}
+              >
+                <span style={{
+                  width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
+                  background: '#C4A882',
+                  boxShadow: '0 0 6px rgba(196,168,130,0.5)',
+                }} />
+                <span style={{ fontSize: 11, color: '#5E5A55' }}>
+                  API docs <span style={{ color: '#787068' }}>:{port}</span>
+                </span>
+              </a>
+            )
+          })()}
         </div>
       </aside>
 
