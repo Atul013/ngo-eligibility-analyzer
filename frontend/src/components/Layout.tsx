@@ -1,50 +1,86 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import {
-  LayoutDashboard, Users, Brain, Zap, Heart,
-} from 'lucide-react'
+import { LayoutDashboard, Users, Zap, Brain } from 'lucide-react'
 
 const nav = [
-  { to: '/',             label: 'Dashboard',    icon: LayoutDashboard },
-  { to: '/beneficiaries',label: 'Beneficiaries', icon: Users },
-  { to: '/predict',      label: 'Predict',       icon: Zap },
-  { to: '/training',     label: 'Training',      icon: Brain },
+  { to: '/',              label: 'Dashboard',    icon: LayoutDashboard },
+  { to: '/beneficiaries', label: 'Beneficiaries', icon: Users },
+  { to: '/predict',       label: 'Predict',       icon: Zap },
+  { to: '/training',      label: 'Training',      icon: Brain },
 ]
 
 export default function Layout() {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', background: '#0C0C0C' }}>
       {/* Sidebar */}
-      <aside className="w-60 shrink-0 flex flex-col border-r border-white/10 bg-gray-900">
-        <div className="flex items-center gap-2 px-5 py-5 border-b border-white/10">
-          <Heart className="text-green-400 w-5 h-5" />
-          <span className="font-semibold text-sm tracking-wide text-white">NGO Eligibility</span>
+      <aside style={{
+        width: 208,
+        flexShrink: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#0E0E0E',
+        borderRight: '1px solid rgba(255,255,255,0.05)',
+      }}>
+        {/* Logo */}
+        <div style={{ padding: '22px 18px 16px' }}>
+          <p style={{ margin: '0 0 3px', fontSize: 10, color: '#5E5A55', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+            Week 2 · AI + Python
+          </p>
+          <h1 style={{ margin: 0, fontSize: 15, fontWeight: 500, color: '#F5F0E8', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+            NGO Eligibility
+          </h1>
         </div>
-        <nav className="flex-1 p-3 space-y-1">
+
+        <div style={{ margin: '0 14px', height: 1, background: 'rgba(255,255,255,0.05)' }} />
+
+        {/* Nav */}
+        <nav style={{ flex: 1, padding: '10px 8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
           {nav.map(({ to, label, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}
               end={to === '/'}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                  isActive
-                    ? 'bg-green-500/20 text-green-400 font-medium'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`
-              }
+              style={({ isActive }) => ({
+                display: 'flex',
+                alignItems: 'center',
+                gap: 9,
+                padding: '7px 10px',
+                borderRadius: 7,
+                fontSize: 13,
+                fontWeight: 400,
+                textDecoration: 'none',
+                transition: 'background 0.12s, color 0.12s',
+                color: isActive ? '#C4A882' : '#787068',
+                background: isActive ? 'rgba(196,168,130,0.08)' : 'transparent',
+                border: isActive ? '1px solid rgba(196,168,130,0.14)' : '1px solid transparent',
+              })}
             >
-              <Icon className="w-4 h-4" />
-              {label}
+              {({ isActive }) => (
+                <>
+                  <Icon size={14} color={isActive ? '#C4A882' : '#5E5A55'} strokeWidth={1.8} />
+                  {label}
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/10">
-          <p className="text-xs text-gray-500">Week 2 · AI + Python</p>
+
+        {/* Footer */}
+        <div style={{ padding: '14px 14px 18px' }}>
+          <div style={{
+            background: 'rgba(255,255,255,0.02)',
+            border: '1px solid rgba(255,255,255,0.05)',
+            borderRadius: 7,
+            padding: '9px 12px',
+          }}>
+            <p style={{ margin: 0, fontSize: 11, color: '#5E5A55', lineHeight: 1.5 }}>
+              FastAPI · Scikit-Learn · React
+            </p>
+          </div>
         </div>
       </aside>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-y-auto">
+      {/* Main */}
+      <main style={{ flex: 1, overflowY: 'auto' }}>
         <Outlet />
       </main>
     </div>

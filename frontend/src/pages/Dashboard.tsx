@@ -2,139 +2,179 @@ import { useQuery } from '@tanstack/react-query'
 import { getAnalytics, getIncomeDistribution } from '../api/client'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, Legend,
+  PieChart, Pie, Cell,
 } from 'recharts'
 import { Users, CheckCircle, XCircle, DollarSign, User, Home } from 'lucide-react'
 
-const COLORS = { Eligible: '#22c55e', 'Not Eligible': '#ef4444' }
-const PIE_COLORS = ['#22c55e', '#ef4444']
-
-function StatCard({ icon: Icon, label, value, color = 'text-white' }: {
-  icon: React.ElementType; label: string; value: string | number; color?: string
-}) {
-  return (
-    <div className="glass rounded-xl p-5 flex items-start gap-4">
-      <div className="p-2 rounded-lg bg-white/10">
-        <Icon className={`w-5 h-5 ${color}`} />
-      </div>
-      <div>
-        <p className="text-xs text-gray-400 mb-1">{label}</p>
-        <p className={`text-2xl font-bold ${color}`}>{value}</p>
-      </div>
-    </div>
-  )
+const TOOLTIP_STYLE = {
+  background: '#181818',
+  border: '1px solid rgba(255,255,255,0.07)',
+  borderRadius: 8,
+  fontSize: 12,
+  color: '#F5F0E8',
+  boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
 }
+const AXIS_TICK = { fill: '#5E5A55', fontSize: 11, fontFamily: 'Inter Variable, sans-serif' }
+
+const STATS = [
+  { label: 'Total Applicants',   icon: Users,        key: 'total'   },
+  { label: 'Eligible',           icon: CheckCircle,  key: 'eligible' },
+  { label: 'Not Eligible',       icon: XCircle,      key: 'not'     },
+  { label: 'Avg Income',         icon: DollarSign,   key: 'income'  },
+  { label: 'Avg Age',            icon: User,         key: 'age'     },
+  { label: 'Avg Family Members', icon: Home,         key: 'family'  },
+]
+
+const sectionLabel = (text: string, sub?: string) => (
+  <div style={{ marginBottom: 16 }}>
+    <p style={{ margin: 0, fontSize: 13, fontWeight: 500, color: '#F5F0E8', letterSpacing: '-0.01em' }}>{text}</p>
+    {sub && <p style={{ margin: '2px 0 0', fontSize: 11, color: '#5E5A55' }}>{sub}</p>}
+  </div>
+)
 
 export default function Dashboard() {
-  const { data: analytics, isLoading } = useQuery({
-    queryKey: ['analytics'],
-    queryFn: getAnalytics,
-  })
+  const { data: analytics, isLoading } = useQuery({ queryKey: ['analytics'], queryFn: getAnalytics })
+  const { data: incomeDist } = useQuery({ queryKey: ['income-dist'], queryFn: getIncomeDistribution })
 
-  const { data: incomeDist } = useQuery({
-    queryKey: ['income-dist'],
-    queryFn: getIncomeDistribution,
-  })
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="w-8 h-8 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />
-      </div>
-    )
-  }
-
+  if (isLoading) return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+      <p style={{ fontSize: 13, color: '#5E5A55' }}>Loading…</p>
+    </div>
+  )
   if (!analytics) return null
 
-  const eligibilityData = [
-    { name: 'Eligible', value: analytics.eligible_count },
-    { name: 'Not Eligible', value: analytics.not_eligible_count },
+  const statValues = [
+    String(analytics.total_applicants),
+    String(analytics.eligible_count),
+    String(analytics.not_eligible_count),
+    `₹${(analytics.average_income / 1000).toFixed(0)}K`,
+    `${analytics.average_age.toFixed(1)} yrs`,
+    String(analytics.average_family_members.toFixed(1)),
   ]
 
-  const employmentData = Object.entries(analytics.employment_breakdown).map(([name, value]) => ({ name, value }))
-  const educationData = Object.entries(analytics.education_breakdown).map(([name, value]) => ({ name, value }))
+  const eligibilityData = [
+    { name: 'Eligible',     value: analytics.eligible_count },
+    { name: 'Not Eligible', value: analytics.not_eligible_count },
+  ]
+  const employmentData = Object.entries(analytics.employment_breakdown)
+    .sort(([,a],[,b]) => (b as number)-(a as number))
+    .map(([name, value]) => ({ name, value }))
+  const educationData = Object.entries(analytics.education_breakdown)
+    .sort(([,a],[,b]) => (b as number)-(a as number))
+    .map(([name, value]) => ({ name, value }))
 
-  const incomeChartData = incomeDist
-    ? Object.entries(incomeDist).map(([range, vals]) => ({
-        range,
-        Eligible: (vals as Record<string, number>)['Eligible'] ?? 0,
-        'Not Eligible': (vals as Record<string, number>)['Not Eligible'] ?? 0,
-      }))
-    : []
+  // API returns { "Eligible": { "<1L": n, … }, "Not Eligible": { … } }
+  const incomeChartData = (() => {
+    if (!incomeDist) return []
+    const eligMap  = (incomeDist['Eligible']     ?? {}) as Record<string, number>
+    const notMap   = (incomeDist['Not Eligible'] ?? {}) as Record<string, number>
+    const ranges   = Object.keys(eligMap).length ? Object.keys(eligMap) : Object.keys(notMap)
+    return ranges.map(r => ({ range: r, Eligible: eligMap[r] ?? 0, 'Not Eligible': notMap[r] ?? 0 }))
+  })()
+
+  const card = (style: React.CSSProperties = {}) => ({
+    background: '#181818',
+    border: '1px solid rgba(255,255,255,0.06)',
+    borderRadius: 14,
+    ...style,
+  })
 
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <p className="text-sm text-gray-400 mt-1">NGO Beneficiary Eligibility Overview</p>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '28px 24px 60px' }}>
+      {/* Page header */}
+      <div style={{ marginBottom: 24, paddingBottom: 20, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <p style={{ margin: '0 0 2px', fontSize: 11, color: '#5E5A55', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Overview</p>
+        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 500, color: '#F5F0E8', letterSpacing: '-0.02em' }}>Dashboard</h1>
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        <StatCard icon={Users}       label="Total Applicants"   value={analytics.total_applicants} />
-        <StatCard icon={CheckCircle} label="Eligible"           value={analytics.eligible_count}   color="text-green-400" />
-        <StatCard icon={XCircle}     label="Not Eligible"       value={analytics.not_eligible_count} color="text-red-400" />
-        <StatCard icon={DollarSign}  label="Avg Income"         value={`₹${(analytics.average_income / 1000).toFixed(0)}K`} />
-        <StatCard icon={User}        label="Avg Age"            value={`${analytics.average_age.toFixed(1)} yrs`} />
-        <StatCard icon={Home}        label="Avg Family Members" value={analytics.average_family_members.toFixed(1)} />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 10, marginBottom: 20 }}>
+        {STATS.map(({ label, icon: Icon }, i) => (
+          <div key={label} style={{ ...card(), padding: '14px 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+              <p style={{ margin: 0, fontSize: 11, color: '#5E5A55' }}>{label}</p>
+              <Icon size={12} color="#5E5A55" strokeWidth={1.6} />
+            </div>
+            <p style={{ margin: 0, fontSize: 22, fontWeight: 500, color: '#F5F0E8', letterSpacing: '-0.02em', lineHeight: 1 }}>
+              {statValues[i]}
+            </p>
+          </div>
+        ))}
       </div>
 
-      {/* Charts row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Eligibility pie */}
-        <div className="glass rounded-xl p-5">
-          <h2 className="text-sm font-semibold text-gray-300 mb-4">Eligibility Distribution</h2>
-          <ResponsiveContainer width="100%" height={200}>
+      {/* Charts row */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 12 }}>
+        {/* Eligibility */}
+        <div style={{ ...card(), padding: '20px 20px 16px' }}>
+          {sectionLabel('Eligibility Split', 'Eligible vs Not Eligible')}
+          <ResponsiveContainer width="100%" height={180}>
             <PieChart>
-              <Pie data={eligibilityData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={false}>
-                {eligibilityData.map((_, i) => <Cell key={i} fill={PIE_COLORS[i]} />)}
+              <Pie data={eligibilityData} dataKey="value" cx="50%" cy="50%"
+                innerRadius={46} outerRadius={68} paddingAngle={3}>
+                <Cell fill="#C4A882" />
+                <Cell fill="#3D3530" />
               </Pie>
-              <Tooltip formatter={(v) => [v, '']} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(v: number, n: string) => [`${v} applicants`, n]} />
             </PieChart>
           </ResponsiveContainer>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 4 }}>
+            {[['#C4A882','Eligible',analytics.eligible_count],['#3D3530','Not Eligible',analytics.not_eligible_count]].map(([c,n,v]) => (
+              <span key={String(n)} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#787068' }}>
+                <span style={{ width: 8, height: 8, borderRadius: 2, background: String(c), display: 'inline-block' }} />
+                {n} ({v})
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Employment breakdown */}
-        <div className="glass rounded-xl p-5">
-          <h2 className="text-sm font-semibold text-gray-300 mb-4">Employment Status</h2>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={employmentData} layout="vertical">
-              <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" tick={{ fill: '#9ca3af', fontSize: 10 }} width={85} />
-              <Tooltip contentStyle={{ background: '#1f2937', border: 'none' }} />
-              <Bar dataKey="value" fill="#22c55e" radius={[0, 4, 4, 0]} />
+        {/* Employment */}
+        <div style={{ ...card(), padding: '20px 20px 16px' }}>
+          {sectionLabel('Employment Status', 'Applicant breakdown')}
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={employmentData} layout="vertical" barSize={8}>
+              <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="name" tick={{ ...AXIS_TICK, fontSize: 10 }} width={84} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Bar dataKey="value" fill="#C4A882" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Education breakdown */}
-        <div className="glass rounded-xl p-5">
-          <h2 className="text-sm font-semibold text-gray-300 mb-4">Education Level</h2>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={educationData} layout="vertical">
-              <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" tick={{ fill: '#9ca3af', fontSize: 10 }} width={105} />
-              <Tooltip contentStyle={{ background: '#1f2937', border: 'none' }} />
-              <Bar dataKey="value" fill="#6366f1" radius={[0, 4, 4, 0]} />
+        {/* Education */}
+        <div style={{ ...card(), padding: '20px 20px 16px' }}>
+          {sectionLabel('Education Level', 'Applicant breakdown')}
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={educationData} layout="vertical" barSize={8}>
+              <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="name" tick={{ ...AXIS_TICK, fontSize: 10 }} width={107} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Bar dataKey="value" fill="#787068" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Income distribution chart */}
+      {/* Income vs Eligibility */}
       {incomeChartData.length > 0 && (
-        <div className="glass rounded-xl p-5">
-          <h2 className="text-sm font-semibold text-gray-300 mb-4">Income Distribution vs Eligibility</h2>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={incomeChartData}>
-              <XAxis dataKey="range" tick={{ fill: '#9ca3af', fontSize: 12 }} />
-              <YAxis tick={{ fill: '#9ca3af', fontSize: 12 }} />
-              <Tooltip contentStyle={{ background: '#1f2937', border: 'none' }} />
-              <Legend wrapperStyle={{ color: '#9ca3af', fontSize: 12 }} />
-              <Bar dataKey="Eligible" stackId="a" fill={COLORS['Eligible']} radius={[0, 0, 0, 0]} />
-              <Bar dataKey="Not Eligible" stackId="a" fill={COLORS['Not Eligible']} radius={[4, 4, 0, 0]} />
+        <div style={{ ...card(), padding: '20px 24px 20px' }}>
+          {sectionLabel('Income Range vs Eligibility', 'Stacked count per income bracket')}
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={incomeChartData} barSize={30}>
+              <XAxis dataKey="range" tick={AXIS_TICK} axisLine={false} tickLine={false} />
+              <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+              <Bar dataKey="Eligible"     stackId="a" fill="#C4A882" />
+              <Bar dataKey="Not Eligible" stackId="a" fill="#3D3530" radius={[4,4,0,0]} />
             </BarChart>
           </ResponsiveContainer>
+          <div style={{ display: 'flex', gap: 16, marginTop: 10 }}>
+            {[['#C4A882','Eligible'],['#3D3530','Not Eligible']].map(([c,n]) => (
+              <span key={n} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, color:'#5E5A55' }}>
+                <span style={{ width:8, height:8, borderRadius:2, background:c, display:'inline-block' }} />
+                {n}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>
