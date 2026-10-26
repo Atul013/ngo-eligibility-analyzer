@@ -8,6 +8,7 @@ from fastapi import FastAPI, Depends, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from scalar_fastapi import get_scalar_api_reference
+from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 import models
@@ -242,39 +243,44 @@ REQUIRED_COLS = {
 
 @app.post("/upload", tags=["Data"])
 async def upload_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
-    if not file.filename.endswith(".csv"):
+    if not (file.filename or "").lower().endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are accepted.")
 
     content = await file.read()
     try:
         df = pd.read_csv(io.StringIO(content.decode("utf-8")))
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Could not parse CSV: {e}")
+    except (UnicodeDecodeError, pd.errors.ParserError):
+        raise HTTPException(status_code=400, detail="Could not parse CSV.")
 
     missing = REQUIRED_COLS - set(df.columns)
     if missing:
         raise HTTPException(status_code=422, detail=f"Missing columns: {missing}")
 
-    df = df.dropna(subset=list(REQUIRED_COLS))
     inserted = 0
     errors = []
 
     for idx, row in df.iterrows():
         try:
-            record = models.Beneficiary(
-                applicant_name=str(row["applicant_name"]),
-                age=int(row["age"]),
-                family_income=float(row["family_income"]),
-                family_members=int(row["family_members"]),
-                employment_status=str(row["employment_status"]),
-                education_level=str(row["education_level"]),
-                disability_status=str(row["disability_status"]),
-                eligibility_status=str(row["eligibility_status"]),
-            )
+            raw_record = {
+                column: None if pd.isna(row[column]) else row[column]
+                for column in REQUIRED_COLS
+            }
+            validated = schemas.BeneficiaryCreate.model_validate(raw_record)
+            record = models.Beneficiary(**validated.model_dump())
             db.add(record)
             inserted += 1
-        except Exception as e:
-            errors.append({"row": int(idx), "error": str(e)})
+        except ValidationError as exc:
+            errors.append({
+                "row": int(idx),
+                "errors": [
+                    {
+                        "field": ".".join(str(part) for part in error["loc"]),
+                        "message": error["msg"],
+                        "type": error["type"],
+                    }
+                    for error in exc.errors(include_url=False, include_input=False)
+                ],
+            })
 
     db.commit()
     return {"inserted": inserted, "skipped": len(errors), "errors": errors[:10]}

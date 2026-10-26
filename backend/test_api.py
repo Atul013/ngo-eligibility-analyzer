@@ -252,3 +252,50 @@ class TestAnalytics:
         res = client.get("/health")
         assert res.status_code == 200
         assert res.json()["status"] == "ok"
+
+
+# ── CSV Upload Tests ────────────────────────────────────────────────────────
+
+class TestUpload:
+    CSV_HEADER = (
+        "applicant_name,age,family_income,family_members,employment_status,"
+        "education_level,disability_status,eligibility_status\n"
+    )
+
+    def test_upload_imports_only_schema_valid_rows(self, client):
+        csv_data = self.CSV_HEADER + (
+            "Valid Person,25,120000,5,Unemployed,Secondary,No,Eligible\n"
+            "Invalid Age,200,90000,4,Unemployed,Primary,No,Eligible\n"
+            "Invalid Category,30,110000,3,Unknown,Secondary,No,Eligible\n"
+            "Missing Income,30,,3,Employed,Undergraduate,No,Not Eligible\n"
+        )
+
+        response = client.post(
+            "/upload",
+            files={"file": ("beneficiaries.csv", csv_data, "text/csv")},
+        )
+
+        assert response.status_code == 200
+        body = response.json()
+        assert body["inserted"] == 1
+        assert body["skipped"] == 3
+        assert [error["row"] for error in body["errors"]] == [1, 2, 3]
+        assert {detail["field"] for detail in body["errors"][0]["errors"]} == {"age"}
+        assert {detail["field"] for detail in body["errors"][1]["errors"]} == {
+            "employment_status"
+        }
+        assert {detail["field"] for detail in body["errors"][2]["errors"]} == {
+            "family_income"
+        }
+
+        stored = client.get("/beneficiaries").json()
+        assert [record["applicant_name"] for record in stored] == ["Valid Person"]
+
+    def test_upload_malformed_utf8_uses_stable_error(self, client):
+        response = client.post(
+            "/upload",
+            files={"file": ("beneficiaries.csv", b"\xff\xfe\x00", "text/csv")},
+        )
+
+        assert response.status_code == 400
+        assert response.json() == {"detail": "Could not parse CSV."}
